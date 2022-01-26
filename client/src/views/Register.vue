@@ -11,10 +11,13 @@
           <div class="flex flex-col flex-1 justify-center mb-8">
             <h1 class="text-3xl text-center font-thin">Register</h1>
             <div class="w-full mt-4">
-              <div class="form-horizontal w-3/4 mx-auto">
+              <form 
+              @submit.prevent="register"
+              class="form-horizontal w-3/4 mx-auto">
 
                 <div class="flex flex-col mt-4">
                   <input
+                    v-model="dataRegister.username"
                     type="text"
                     class="flex-grow h-10 px-2 border rounded border-grey-400 hover:border-gray-500 focus:border-gray-500 transition delay-50 duration-300 ease-in-out cursor-default text-sm"
                     placeholder="Username"
@@ -23,6 +26,7 @@
 
                 <div class="flex flex-col mt-4">
                   <input
+                    v-model="dataRegister.email"
                     id="email"
                     type="text"
                     class="flex-grow h-10 px-2 border rounded border-grey-400 hover:border-gray-500 focus:border-gray-500 transition delay-50 duration-300 ease-in-out cursor-default text-sm"
@@ -33,6 +37,7 @@
 
                 <div class="flex flex-col mt-4">
                   <input
+                    v-model="dataRegister.password"
                     id="password"
                     type="password"
                     class="flex-grow h-10 px-2 rounded border border-grey-400 hover:border-gray-500 focus:border-gray-500 transition delay-50 duration-300 ease-in-out cursor-default text-sm"
@@ -58,13 +63,21 @@
                 <div class="text-center mt-4">
                   <p class="text-blue-dark text-xs cursor-default">
                     Already Have an Account?
-                    <span class="hover:text-blue-600 cursor-pointer"
+                    <span 
+                    @click="toLoginPage"
+                    class="hover:text-blue-600 cursor-pointer"
                       >Log In</span
                     >
                   </p>
                 </div>
 
-              </div>
+                <div 
+                @click="toHomePage"
+                class="text-center mt-4 text-blue-dark text-sm hover:text-blue-600 cursor-pointer">
+                  Return to Home
+                </div>
+
+              </form>
             </div>
           </div>
         </div>
@@ -86,6 +99,36 @@
 <script>
 export default {
   name: "Register",
+  data(){
+    return{
+      dataRegister: {
+        username:'',
+        email:'',
+        password:''
+      }
+    } 
+  },
+  computed:{
+    isRegistered(){
+      return this.$store.state.registered
+    }
+  },
+
+  methods: {
+    toHomePage(){
+      this.$router.push('/')
+    },
+    toLoginPage(){
+      this.$router.push('/login')
+    },
+
+    async register(){
+      await this.$store.dispatch('postRegister',this.dataRegister)
+      if(this.isRegistered){
+        this.toLoginPage()
+      }
+    }
+  },
 };
 </script>
 
