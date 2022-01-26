@@ -38,17 +38,13 @@
           Home
         </div>
         <div
-        @click="toExchangesPage"
-          class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
-        >
-          Exchanges
-        </div>
-        <div
+        @click="toNewsPage"
           class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
         >
           News
         </div>
         <div
+          v-if="loggedIn" 
           @click="toWatchlistPage"
           class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
         >
@@ -106,6 +102,9 @@ export default {
     toWatchlistPage(){
       this.$router.push('/favorite')
     },
+    toNewsPage(){
+      this.$router.push('/news')
+    },
     logout(){
       localStorage.clear()
       this.$store.commit('MUTATE_LOGIN', false)
@@ -113,6 +112,11 @@ export default {
     },
 
 
+  },
+  created(){
+    if(localStorage.access_token){
+      this.$store.commit('MUTATE_LOGIN',true)
+    }
   }
 };
 </script>
