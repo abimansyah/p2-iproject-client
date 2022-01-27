@@ -1,11 +1,12 @@
 <template>
   <div>
-    <div class="h-full bg-blue-200">
+    <div class="h-full bg-white">
       <div class="flex flex-col">
         <Navbar></Navbar>
 
         <div class="flex-1 flex-row overflow-hidden">
           <div class="container mx-auto ">
+            
             <div class="flex flex-row justify-between">
               <NewsFrontPage
               v-for="oneNews in news.articles"
@@ -21,7 +22,7 @@
                 <div>
                   <div class="dropdown inline-block relative">
                     <div
-                      class="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center h-10 w-72"
+                      class="bg-gray-100 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center h-10 w-72"
                     >
                       <span class="mr-1">Order by</span>
                       <svg
@@ -40,7 +41,7 @@
                       <li class="">
                         <div
                           @click="sortByPrice"
-                          class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                          class="rounded-t bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap cursor-pointer"
                         >
                           price
                         </div>
@@ -49,7 +50,7 @@
                       <li class="">
                         <div
                           @click="sortByMarketCap"
-                          class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                          class="bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap cursor-pointer"
                         >
                           marketCap
                         </div>
@@ -58,7 +59,7 @@
                       <li class="">
                         <div
                           @click="sortByDailyVolume"
-                          class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                          class="rounded-b bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap cursor-pointer"
                         >
                           24hVolume
                         </div>
@@ -67,7 +68,7 @@
                       <li class="">
                         <div
                           @click="sortByChange"
-                          class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                          class=" bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap cursor-pointer"
                         >
                           change
                         </div>
@@ -76,7 +77,7 @@
                       <li class="">
                         <div
                           @click="sortByListedAt"
-                          class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                          class="rounded-b bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap cursor-pointer"
                         >
                           listedAt
                         </div>
@@ -89,9 +90,9 @@
                 <div>
                   <div class="dropdown inline-block relative">
                     <div
-                      class="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center h-10 w-72"
+                      class="bg-gray-100 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center h-10 w-72"
                     >
-                      <span class="mr-1">Order Direction</span>
+                      <span class="mr-1 cursor-default">Order Direction</span>
                       <svg
                         class="fill-current h-4 w-4"
                         xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +109,7 @@
                       <li class="">
                         <div
                           @click.prevent="toAscend"
-                          class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                          class="rounded-t cursor-pointer bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap"
                         >
                           ascending
                         </div>
@@ -117,7 +118,7 @@
                       <li class="">
                         <div
                           @click.prevent="toDescend"
-                          class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                          class="rounded-b cursor-pointer bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap"
                         >
                           descending
                         </div>
@@ -125,6 +126,7 @@
                     </ul>
                   </div>
                 </div>
+
                 <!-- search -->
                 <div class="bg-gray-200 rounded-lg">
                   <div class="container flex justify-center items-center">
@@ -163,7 +165,7 @@
                           <!-- # number -->
                           <th
                             scope="col"
-                            class="text-sm font-medium text-gray-900 px-6 py-4"
+                            class="text-sm font-bold text-gray-900 px-6 py-4"
                           >
                             #
                           </th>
@@ -171,39 +173,39 @@
                           <!-- name -->
                           <th
                             scope="col"
-                            class="text-sm font-medium text-gray-900 px-6 py-4"
+                            class="text-sm font-bold text-gray-900 px-6 py-4"
                           >
-                            name
+                            Coin Name
                           </th>
 
                           <!-- marketCap -->
                           <th
                             scope="col"
-                            class="text-sm font-medium text-gray-900 px-6 py-4"
+                            class="text-sm font-bold text-gray-900 px-6 py-4"
                           >
-                            marketCap
+                            Market Cap
                           </th>
 
                           <!-- price -->
                           <th
                             scope="col"
-                            class="text-sm font-medium text-gray-900 px-6 py-4"
+                            class="text-sm font-bold text-gray-900 px-6 py-4"
                           >
-                            price
+                            Price
                           </th>
 
                           <!-- change -->
                           <th
                             scope="col"
-                            class="text-sm font-medium text-gray-900 px-6 py-4"
+                            class="text-sm font-bold text-gray-900 px-6 py-4"
                           >
-                            change
+                            Change
                           </th>
 
                           <!-- 24hvolume -->
                           <th
                             scope="col"
-                            class="text-sm font-medium text-gray-900 px-6 py-4"
+                            class="text-sm font-bold text-gray-900 px-6 py-4"
                           >
                             24hVolume
                           </th>
@@ -211,7 +213,7 @@
                           <!-- BTCPrice -->
                           <th
                             scope="col"
-                            class="text-sm font-medium text-gray-900 px-6 py-4"
+                            class="text-sm font-bold text-gray-900 px-6 py-4"
                           >
                             Btc Price
                           </th>
@@ -220,7 +222,7 @@
                           <th
                             v-if="loggedIn"
                             scope="col"
-                            class="text-sm font-medium text-gray-900 px-6 py-4"
+                            class="text-sm font-bold text-gray-900 px-6 py-4"
                           >
                             Watchlist
                           </th>

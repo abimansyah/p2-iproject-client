@@ -1,14 +1,14 @@
 <template>
   <div>
     <div>
-      <div class="h-full bg-blue-200">
+      <div class="h-full bg-white">
         <div class="flex flex-col">
           <Navbar></Navbar>
         </div>
 
         <div class="min-w-full sm:px-6 lg:px-8">
           <!-- component -->
-          <main class="py-12 md:px-20 sm:px-14 px-6">
+          <main class="md:px-20 sm:px-14 px-6">
             <div class="md:flex space-x-6">
               <!-- search -->
 
@@ -47,19 +47,20 @@
               <!-- <NewsCard></NewsCard> -->
             </div>
 
-            <section class="pt-20 lg:pt-[120px] pb-10 lg:pb-20 bg-[#F3F4F6]">
+            <section class=" pb-10 lg:pb-20">
               <div class="container">
                 <div class="flex flex-wrap mx-4">
+
                   <NewsCard
                     v-for="oneNews in news.articles"
                     :key="oneNews.id"
                     :oneNews="oneNews"
                   ></NewsCard>
+
                 </div>
               </div>
             </section>
 
-            <div>ppppppppp</div>
           </main>
         </div>
       </div>

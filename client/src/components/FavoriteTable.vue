@@ -5,10 +5,12 @@
     </td>
 
     <td
-      @click.prevent="coinDetail(coin.uuid)"
+      @click.prevent="coinDetail(coin.coinId)"
       class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap cursor-pointer"
     >
-      {{coin.name}}
+      <span class=""><img :src="coin.iconUrl" alt="" style="width: 30px; height: auto; object-fit: cover;"></span>
+    <span class="text-sm text-gray-600 font-bold">{{coin.name}}</span>
+    <span class="pl-4">{{coin.symbol}}</span>
     </td>
 
     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
@@ -61,6 +63,10 @@ export default {
     }
   },
   methods: {
+    coinDetail(coinId){
+      this.$router.push(`/cryptocurrency/${coinId}`)
+      this.$store.dispatch('getCoinById',coinId)
+    },
     getWatchList(){
       this.$store.dispatch('getWatchlist')
     },
