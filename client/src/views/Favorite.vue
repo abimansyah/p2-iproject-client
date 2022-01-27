@@ -2,7 +2,9 @@
   <div>
     <Navbar></Navbar>
     <div class="flex flex-col">
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="flex-1 flex-row overflow-hidden">
+        <div class="container mx-auto">
+          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
           <div class="overflow-x-auto">
             <!--Table  -->
@@ -13,7 +15,7 @@
                   <!-- # number -->
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4"
+                    class="text-sm font-bold text-gray px-6 py-4"
                   >
                     #
                   </th>
@@ -21,32 +23,32 @@
                   <!-- name -->
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4"
+                    class="text-sm font-bold text-gray-900 px-6 py-4"
                   >
-                    name
+                    Coin Name
                   </th>
 
                   <!-- change -->
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4"
+                    class="text-sm font-bold text-gray-900  px-6 py-4"
                   >
-                    change
+                    Change
                   </th>
 
                   <!-- price -->
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4"
+                    class="text-sm font-bold text-gray-900  px-6 py-4"
                   >
-                    price
+                    Price
                   </th>
 
 
                   <!-- 24hvolume -->
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4"
+                    class="text-sm font-bold text-gray-900  px-6 py-4"
                   >
                     24hVolume
                   </th>
@@ -54,7 +56,7 @@
                   <!-- BTCPrice -->
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4"
+                    class="text-sm font-bold text-gray-900  px-6 py-4"
                   >
                     Btc Price
                   </th>
@@ -62,7 +64,7 @@
                   <!-- Watchlist -->
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4"
+                    class="text-sm font-bold text-gray-900  px-6 py-4"
                   >
                     Remove
                   </th>
@@ -81,6 +83,12 @@
           </div>
         </div>
       </div>
+
+        </div>
+      </div>
+
+
+      
     </div>
   </div>
 </template>
