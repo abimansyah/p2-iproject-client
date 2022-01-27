@@ -15,6 +15,7 @@ export default new Vuex.Store({
     coinDetails:[],
     watchlist:[],
     url: "http://localhost:3000",
+    // url: "https://crypto8-iproject.herokuapp.com",
   },
   mutations: {
     MUTATE_LOGIN(state, payload) {
@@ -238,6 +239,29 @@ export default new Vuex.Store({
         context.commit('MUTATE_NEWS',news.data)
       } catch (err) {
         console.log(err);
+      }
+    },
+    async googleLogin(context, payload) {
+      try {
+        const response = await axios({
+          method: "post",
+          url: `${context.state.url}/login-google`,
+          data: {
+            token: payload.getAuthResponse().id_token,
+          },
+        });
+        localStorage.setItem("access_token", response.data.access_token);
+        context.commit("MUTATE_LOGIN", true);
+        Swal.fire({
+          icon: "success",
+          text: "Sign In Successfull",
+        });
+      } catch (err) {
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          text: err.response.data.message,
+        });
       }
     }
 

@@ -57,7 +57,9 @@
                 </div>
 
                 <div class="flex flex-col mt-4">
-                  <button
+                  <GoogleLogin
+                      :params="params"
+                      :onSuccess="onSuccess"
                     class="flex items-center justify-center w-full px-4 py-2 text-sm text-white text-gray-700 border border-gray-300 rounded hover:border-gray-500 focus:border-gray-500 transition delay-50 duration-300 ease-in-out"
                   >
                     <svg
@@ -96,7 +98,7 @@
                         d="M48 48L17 24l-4-3 35-10z"
                       /></svg
                     >Login with Google
-                  </button>
+                  </GoogleLogin>
                 </div>
 
                 <div class="text-center mt-6">
@@ -130,21 +132,34 @@
 </template>
 
 <script>
-// import{mapActions} from 'vuex'
+import GoogleLogin from "vue-google-login";
 
 export default {
   name: "Login",
+  components:{
+    GoogleLogin
+  },
   data(){
     return{
       dataLogin: {
         email: '',
         password: ''
+      },
+      params:{
+        client_id:
+          "888596211045-qjubh5q2c9pmed6dv3qc4smslaoincdi.apps.googleusercontent.com",
       }
 
     }
   },
   methods: {
-    // ...mapActions(['postLogin']),
+
+    async onSuccess(googleUser) {
+      await this.$store.dispatch("googleLogin", googleUser);
+      if (localStorage.getItem("access_token")) {
+        this.$router.push('/');
+      }
+    },
 
     toHomePage() {
       this.$router.push('/');
