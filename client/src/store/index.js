@@ -14,13 +14,14 @@ export default new Vuex.Store({
     news:[],
     coinDetails:[],
     watchlist:[],
-    url: "http://localhost:3000",
-    // url: "https://crypto8-iproject.herokuapp.com",
+    // url: "http://localhost:3000",
+    url: "https://crypto8-iproject.herokuapp.com",
   },
   mutations: {
     MUTATE_LOGIN(state, payload) {
       state.loggedIn = payload;
     },
+    
     MUTATE_REGISTER(state, payload){
       state.registered = payload
     },
@@ -80,18 +81,18 @@ export default new Vuex.Store({
         });
         context.commit('MUTATE_REGISTER',true)
 
-        // Swal.fire({
-        //   icon: "success",
-        //   text: "Register Successfull",
-        // });
+        Swal.fire({
+          icon: "success",
+          text: "Register Successfull",
+        });
       } catch (err) {
 
         context.commit('MUTATE_REGISTER',false)
-        // console.log(err);
-        // Swal.fire({
-        //   icon: "error",
-        //   text: err.response.data.message,
-        // });
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          text: err.response.data.message,
+        });
       }
     },
     async getCoin(context,payload) {
@@ -170,8 +171,22 @@ export default new Vuex.Store({
           url: `${context.state.url}/favorites/${payload}`,
           headers: { access_token: localStorage.getItem("access_token")}
         })
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Coin Has Been Added to Your Watchlist',
+          showConfirmButton: false,
+          timer: 1000
+        });
       } catch (err) {
         console.log(err);
+        Swal.fire({
+          position: 'top-end',
+          icon: "error",
+          text: err.response.data.message,
+          showConfirmButton: false,
+          timer: 1000
+        });
       }
     },
     async getWatchlist(context, payload) {
@@ -193,6 +208,13 @@ export default new Vuex.Store({
           url: `${context.state.url}/favorites/${payload}`,
           headers: { access_token: localStorage.getItem("access_token")}
         })
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Coin Has Been Removed From Your Watchlist',
+          showConfirmButton: false,
+          timer: 1000
+        });
       } catch (err) {
         console.log(err);
       }

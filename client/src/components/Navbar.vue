@@ -87,8 +87,12 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "Navbar",
+  components: {
+    Swal
+  },
   computed:{
     loggedIn(){
       return this.$store.state.loggedIn
@@ -117,6 +121,13 @@ export default {
       localStorage.clear()
       this.$store.commit('MUTATE_LOGIN', false)
       this.$router.push('/')
+      Swal.fire({
+          icon: "success",
+          text: "You've Logged Out",
+          showConfirmButton: false,
+          timer: 1000,
+          position: 'top-end',
+        });
     },
 
 
